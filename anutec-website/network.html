@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Our Network — Anutec Advertising</title>
+<meta name="description" content="A growing network of 200+ cab driver partners covering 30+ areas of Hyderabad. Join as a driver partner.">
+<meta name="theme-color" content="#0f0819">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem("anutec-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="network">
+<main>
+  <section class="page-hero" style="padding-bottom:30px">
+    <div class="wrap">
+      <span class="eyebrow reveal"><i></i>The network</span>
+      <h1 class="reveal d1">A fleet that <span class="grad">grows every month.</span></h1>
+      <p class="lead reveal d2">Watch the network fill Hyderabad. Each light is a cab driven by a partner who carries your message.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:10px">
+    <div class="wrap">
+      <div class="map-card glass reveal">
+        <canvas id="netCanvas" data-target="214" aria-label="Animated map of Anutec cabs moving between Hyderabad neighbourhoods"></canvas>
+        <div class="map-legend">
+          <span><i style="background:#e8c27a"></i>Neighbourhood hubs</span>
+          <span><i style="background:#d45fb8"></i>Cabs carrying ads</span>
+          <span><i style="border:1px dashed #e8c27a;background:none"></i>Outer Ring Road</span>
+          <span style="margin-left:auto"><b class="gold" style="font-size:1.2rem" id="netCount">0</b> cabs on the map</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow"><i></i>Growth</span>
+        <div class="counter-big grad"><span data-count="200" data-suffix="+">0</span></div>
+        <h2 style="margin-top:6px">driver partners, built one conversation at a time.</h2>
+        <p class="lead">We don't buy reach, we earn it. Drivers join because their friends at the cab stand recommend us. That word of mouth is why the network keeps growing every month.</p>
+      </div>
+      <div class="chart-card glass reveal d1">
+        <div class="chart-head">
+          <div><h3>Network growth</h3><p class="muted" style="font-size:.9rem">Since our first campaign</p></div>
+          <div class="seg" id="growthSeg"><button class="on" data-k="drivers">Drivers</button><button data-k="areas">Areas</button></div>
+        </div>
+        <div class="bars-wrap"><div class="bars" id="bars"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat glass tint-violet reveal"><span class="label">Verified drivers</span><span class="num">100%</span><span class="sub">ID and licence checked</span></div>
+        <div class="stat glass tint-gold reveal d1"><span class="label">Areas covered</span><span class="num" data-count="30" data-suffix="+">0</span><span class="sub">Across the ORR</span></div>
+        <div class="stat glass tint-pink reveal d2"><span class="label">Km driven per day</span><span class="num" data-count="36000" data-suffix="+">0</span><span class="sub">Estimated, whole fleet</span></div>
+        <div class="stat glass tint-blue reveal d3"><span class="label">Install time</span><span class="num">48h</span><span class="sub">From design approval</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="center reveal" style="margin-bottom:40px">
+        <span class="eyebrow"><i></i>Voices from the road</span>
+        <h2>The people behind <span class="grad">the wheel.</span></h2>
+      </div>
+      <div class="grid-3">
+        <blockquote class="quote glass tint-violet reveal" style="font-size:1.1rem">"Payments always come on time. That's why I told six friends from my stand to join."<footer><span class="avatar">S</span><span><b style="color:var(--ink)">Driver partner</b><br>Secunderabad</span></footer></blockquote>
+        <blockquote class="quote glass tint-gold reveal d1" style="font-size:1.1rem">"Passengers ask me about the ad on the seat. Some even scan the QR during the ride."<footer><span class="avatar">M</span><span><b style="color:var(--ink)">Driver partner</b><br>Gachibowli</span></footer></blockquote>
+        <blockquote class="quote glass tint-pink reveal d2" style="font-size:1.1rem">"Installation took less than an hour. Nothing changes in my day, I just earn more."<footer><span class="avatar">K</span><span><b style="color:var(--ink)">Driver partner</b><br>LB Nagar</span></footer></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="join" style="scroll-margin-top:100px">
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow"><i></i>Drive with us</span>
+        <h2>Own a cab in Hyderabad? <span class="grad">Earn more from every kilometre.</span></h2>
+        <p class="lead">Join our driver network. No changes to your routes, no extra hours, just regular extra income for carrying a brand.</p>
+        <ul class="contact-list">
+          <li><span class="glass" style="display:flex;gap:14px;align-items:center;padding:16px;border-radius:18px"><span class="ico gold-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span><b>Regular extra income</b><br><span class="muted">Paid on time, every campaign</span></span></span></li>
+          <li><span class="glass" style="display:flex;gap:14px;align-items:center;padding:16px;border-radius:18px"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span><span><b>Free, safe installation</b><br><span class="muted">Removable and paint-safe</span></span></span></li>
+        </ul>
+      </div>
+      <form class="form glass reveal d1" data-send="New driver partner application">
+        <h3 style="margin-bottom:18px">Driver partner sign-up</h3>
+        <div class="field"><label for="dn">Full name</label><input id="dn" name="Name" required autocomplete="name"></div>
+        <div class="field-row">
+          <div class="field"><label for="dp">Phone</label><input id="dp" name="Phone" type="tel" required autocomplete="tel" inputmode="tel"></div>
+          <div class="field"><label for="dv">Vehicle</label><select id="dv" name="Vehicle"><option>Sedan</option><option>Hatchback</option><option>SUV / MUV</option><option>Auto rickshaw</option></select></div>
+        </div>
+        <div class="field"><label for="da">Usual area</label><input id="da" name="Area" placeholder="e.g. Kukatpally, Madhapur"></div>
+        <button class="btn btn-gold" type="submit" style="width:100%">Send on WhatsApp</button>
+        <p class="note">Your details go straight to our team on WhatsApp.</p>
+      </form>
+    </div>
+  </section>
+</main>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

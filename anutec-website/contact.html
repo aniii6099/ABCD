@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Contact — Anutec Advertising</title>
+<meta name="description" content="Plan a cab advertising campaign in Hyderabad. Get a route plan and quote within 24 hours.">
+<meta name="theme-color" content="#0f0819">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem("anutec-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contact">
+<main>
+  <section class="page-hero" style="padding-bottom:30px">
+    <div class="wrap">
+      <span class="eyebrow reveal"><i></i>Let's talk</span>
+      <h1 class="reveal d1">Plan your <span class="grad">campaign.</span></h1>
+      <p class="lead reveal d2">Try the planner, then send us your brief. You'll get a route plan and quote within 24 hours.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:10px">
+    <div class="wrap grid-2" style="align-items:start">
+      <div class="form glass tint-violet reveal" id="planner">
+        <span class="eyebrow"><i></i>Campaign planner</span>
+        <h3 style="margin:16px 0 20px;font-size:1.6rem">How far could your ad go?</h3>
+        <div class="field">
+          <label for="pCabs">Number of cabs: <b id="pCabsV" style="color:var(--ink)">50</b></label>
+          <input class="range" type="range" id="pCabs" min="10" max="200" step="5" value="50">
+        </div>
+        <div class="field">
+          <label for="pWeeks">Duration: <b id="pWeeksV" style="color:var(--ink)">4 weeks</b></label>
+          <input class="range" type="range" id="pWeeks" min="1" max="12" value="4">
+        </div>
+        <div class="planner-out">
+          <div><b class="grad" id="oViews">0</b><small>Estimated views</small></div>
+          <div><b class="gold" id="oKm">0</b><small>Distance covered</small></div>
+          <div><b id="oRides">0</b><small>Rides with passengers</small></div>
+        </div>
+        <p class="note">Rough estimates based on average city routes. Your actual numbers depend on the areas and formats you choose.</p>
+      </div>
+
+      <form class="form glass reveal d1" data-send="New campaign enquiry">
+        <h3 style="margin-bottom:18px;font-size:1.6rem">Send us your brief</h3>
+        <div class="field-row">
+          <div class="field"><label for="cn">Your name</label><input id="cn" name="Name" required autocomplete="name"></div>
+          <div class="field"><label for="cc">Company</label><input id="cc" name="Company" autocomplete="organization"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="cp">Phone</label><input id="cp" name="Phone" type="tel" required autocomplete="tel" inputmode="tel"></div>
+          <div class="field"><label for="ce">Email</label><input id="ce" name="Email" type="email" autocomplete="email"></div>
+        </div>
+        <div class="field">
+          <label>Industry</label>
+          <div class="pill-set">
+            <label><input type="radio" name="Industry" value="Brand" checked><span>Brand</span></label>
+            <label><input type="radio" name="Industry" value="Hospital"><span>Hospital</span></label>
+            <label><input type="radio" name="Industry" value="Food chain"><span>Food chain</span></label>
+            <label><input type="radio" name="Industry" value="Real estate"><span>Real estate</span></label>
+            <label><input type="radio" name="Industry" value="Organisation"><span>Organisation</span></label>
+          </div>
+        </div>
+        <div class="field"><label for="cm">What are you promoting?</label><textarea id="cm" name="Message" rows="4" placeholder="Target areas, launch date, budget…"></textarea></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-primary" type="submit" data-via="wa" style="flex:1 1 180px">Send on WhatsApp</button>
+          <button class="btn btn-glass" type="submit" data-via="email" style="flex:1 1 180px">Send by email</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="grid-3">
+        <a class="card glass edge reveal" href="#" data-cfg-link="phone" id="lnPhone">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+          <h3>Call us</h3><p data-cfg="phone"></p>
+        </a>
+        <a class="card glass edge reveal d1" data-wa href="#" target="_blank" rel="noopener">
+          <div class="ico gold-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+          <h3>WhatsApp</h3><p>The fastest way to reach us</p>
+        </a>
+        <a class="card glass edge reveal d2" href="#" id="lnMail">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg></div>
+          <h3>Email</h3><p data-cfg="email"></p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="assets/js/main.js"></script>
+<script>
+  document.getElementById("lnPhone").href = "tel:" + CONFIG.phone.replace(/\s/g, "");
+  document.getElementById("lnMail").href = "mailto:" + CONFIG.email;
+</script>
+</body>
+</html>
