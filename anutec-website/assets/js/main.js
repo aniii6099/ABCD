@@ -7,7 +7,10 @@ const CONFIG = {
   whatsapp: "919000000000",        // digits only, with country code
   email: "hello@anutecadvertising.com",
   city: "Hyderabad, Telangana",
-  drivers: 200
+  drivers: 200,
+  instagram: "#",                  // paste your Instagram URL
+  linkedin: "#",                   // paste your LinkedIn URL
+  youtube: "#"                     // paste your YouTube URL
 };
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -49,6 +52,8 @@ function buildLayout() {
     <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dea4"/><stop offset="1" stop-color="#c9974a"/></linearGradient>
   </defs></svg>
   <div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="wipe" aria-hidden="true"><img src="assets/img/emblem.jpg" alt=""></div>
   <header class="header">
     <nav class="nav glass" aria-label="Main">
       <a class="brand" href="index.html" aria-label="Anutec Advertising home">
@@ -73,6 +78,11 @@ function buildLayout() {
         <div>
           <a class="brand" href="index.html"><img src="assets/img/emblem.jpg" alt="" width="42" height="42"><span><b>anutec</b><small>ADVERTISING</small></span></a>
           <p>Moving brands across Hyderabad — one cab, one street, one passenger at a time. ${CONFIG.drivers}+ driver partners and growing.</p>
+          <div class="socials">
+            <a href="${CONFIG.instagram}" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+            <a href="${CONFIG.linkedin}" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+            <a href="${CONFIG.youtube}" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.8 15.1V8.9L15.5 12z"/></svg></a>
+          </div>
         </div>
         <div><h5>Explore</h5><ul>${NAV.map(([, h, l]) => `<li><a href="${h}">${l}</a></li>`).join("")}</ul></div>
         <div><h5>We advertise</h5><ul>
@@ -178,215 +188,6 @@ function runWhenVisible(el, frame) {
     if (vis) raf = requestAnimationFrame(loop);
   }).observe(el);
   frame(0);
-}
-
-/* ---------- HERO: long-exposure night city with light trails ---------- */
-function initHeroCanvas() {
-  const c = $("#heroCanvas"); if (!c) return;
-  let S, buildings = [], trails = [];
-  const setup = () => {
-    S = fitCanvas(c);
-    buildings = [];
-    let x = -20;
-    while (x < S.w + 40) {
-      const bw = 30 + Math.random() * 70, bh = S.h * (.12 + Math.random() * .38);
-      const wins = [];
-      for (let wy = 12; wy < bh - 10; wy += 14) for (let wx = 8; wx < bw - 8; wx += 12) if (Math.random() < .35) wins.push([wx, wy, Math.random()]);
-      buildings.push({ x, w: bw, h: bh, wins, tw: Math.random() * 6 });
-      x += bw + 2 + Math.random() * 10;
-    }
-    trails = Array.from({ length: Math.round(S.w / 28) }, () => newTrail(true));
-  };
-  const lanes = 6;
-  const newTrail = init => {
-    const lane = Math.floor(Math.random() * lanes), dir = lane < lanes / 2 ? 1 : -1;
-    const speed = (2 + Math.random() * 4) * (S.w / 1200 + .4);
-    return { lane, dir, speed, x: init ? Math.random() * S.w : (dir > 0 ? -200 : S.w + 200), len: 80 + Math.random() * 220, ad: Math.random() < .25 };
-  };
-  setup();
-  let lastW = innerWidth;
-  addEventListener("resize", () => { if (innerWidth !== lastW) { lastW = innerWidth; setup(); } });
-  runWhenVisible(c, t => {
-    const { ctx, w, h } = S, light = isLight();
-    ctx.clearRect(0, 0, w, h);
-    const horizon = h * .72;
-    // sky glow
-    const g = ctx.createLinearGradient(0, 0, 0, horizon);
-    g.addColorStop(0, "rgba(0,0,0,0)");
-    g.addColorStop(1, light ? "rgba(212,95,184,.18)" : "rgba(155,93,229,.28)");
-    ctx.fillStyle = g; ctx.fillRect(0, 0, w, horizon);
-    // skyline
-    buildings.forEach(b => {
-      const y = horizon - b.h;
-      ctx.fillStyle = light ? "rgba(90,50,130,.16)" : "rgba(20,8,36,.85)";
-      ctx.fillRect(b.x, y, b.w, b.h);
-      ctx.fillStyle = light ? "rgba(255,255,255,.35)" : "rgba(255,255,255,.04)";
-      ctx.fillRect(b.x, y, b.w, 1);
-      b.wins.forEach(([wx, wy, r]) => {
-        const on = .35 + .65 * Math.abs(Math.sin(t / 1600 + r * 20 + b.tw));
-        ctx.fillStyle = r > .8 ? `rgba(240,166,201,${.55 * on})` : `rgba(232,194,122,${(light ? .45 : .5) * on})`;
-        ctx.fillRect(b.x + wx, y + wy, 4, 5);
-      });
-    });
-    // road
-    const rg = ctx.createLinearGradient(0, horizon, 0, h);
-    rg.addColorStop(0, light ? "rgba(60,30,90,.12)" : "rgba(10,4,18,.9)");
-    rg.addColorStop(1, light ? "rgba(60,30,90,.02)" : "rgba(10,4,18,.4)");
-    ctx.fillStyle = rg; ctx.fillRect(0, horizon, w, h - horizon);
-    // light trails
-    ctx.globalCompositeOperation = light ? "source-over" : "lighter";
-    trails.forEach((tr, i) => {
-      if (!reduceMotion) tr.x += tr.speed * tr.dir;
-      const y = horizon + 10 + tr.lane * ((h - horizon - 20) / lanes) + 6;
-      const x2 = tr.x - tr.len * tr.dir;
-      const col = tr.dir > 0 ? [232, 194, 122] : [212, 95, 184];
-      const lg = ctx.createLinearGradient(tr.x, 0, x2, 0);
-      lg.addColorStop(0, `rgba(${col},.95)`); lg.addColorStop(1, `rgba(${col},0)`);
-      ctx.strokeStyle = lg; ctx.lineWidth = 2 + tr.lane * .5; ctx.lineCap = "round";
-      ctx.beginPath(); ctx.moveTo(tr.x, y); ctx.lineTo(x2, y); ctx.stroke();
-      ctx.fillStyle = `rgba(${col},.9)`; ctx.shadowColor = `rgb(${col})`; ctx.shadowBlur = 14;
-      ctx.beginPath(); ctx.arc(tr.x, y, 2 + tr.lane * .35, 0, 6.3); ctx.fill(); ctx.shadowBlur = 0;
-      if (tr.ad) { // floating ad tag above branded cabs
-        ctx.fillStyle = "rgba(155,93,229,.85)";
-        ctx.fillRect(tr.x - 9 * tr.dir - 6, y - 10, 12, 5);
-      }
-      if ((tr.dir > 0 && x2 > w + 20) || (tr.dir < 0 && x2 < -20)) trails[i] = newTrail(false);
-    });
-    ctx.globalCompositeOperation = "source-over";
-    // reflections
-    ctx.fillStyle = light ? "rgba(255,255,255,.0)" : "rgba(155,93,229,.05)";
-    ctx.fillRect(0, horizon, w, 2);
-  });
-  document.addEventListener("themechange", () => {});
-}
-
-/* ---------- SHOWCASE: animated cab carrying a rotating ad ---------- */
-const ADS = [
-  { k: "Food chain", t1: "BIRYANI IN 20 MIN", t2: "Order now · Madhapur", c1: "#ff9f43", c2: "#ee5253", icon: "🍛" },
-  { k: "Hospital", t1: "24×7 EMERGENCY CARE", t2: "Banjara Hills · Call 108", c1: "#4fc3f7", c2: "#5c6bc0", icon: "✚" },
-  { k: "Real estate", t1: "3BHK @ KOKAPET", t2: "Site visit this Sunday", c1: "#e8c27a", c2: "#b98238", icon: "⌂" },
-  { k: "Brand launch", t1: "NEW. BOLD. YOURS.", t2: "Launching across Hyderabad", c1: "#d45fb8", c2: "#9b5de5", icon: "✦" },
-  { k: "Organisation", t1: "RUN FOR A CAUSE", t2: "Register · Necklace Road", c1: "#5ee39a", c2: "#1fa855", icon: "❤" }
-];
-function initShowcase() {
-  const c = $("#cabCanvas"); if (!c) return;
-  let S = fitCanvas(c), ad = 0, adT = 0, manual = 0;
-  addEventListener("resize", () => S = fitCanvas(c));
-  const chips = $("#adChips");
-  chips.innerHTML = ADS.map((a, i) => `<button class="ad-chip ${i ? "" : "on"}" data-i="${i}">${a.k}</button>`).join("");
-  const setAd = i => { ad = i; adT = performance.now(); $$(".ad-chip", chips).forEach((b, j) => b.classList.toggle("on", j === i)); };
-  chips.addEventListener("click", e => { const b = e.target.closest(".ad-chip"); if (b) { setAd(+b.dataset.i); manual = performance.now(); } });
-  const far = Array.from({ length: 30 }, (_, i) => ({ x: i * 60, h: 40 + Math.random() * 120, w: 40 + Math.random() * 30 }));
-  const near = Array.from({ length: 16 }, (_, i) => ({ x: i * 120, h: 70 + Math.random() * 110, w: 70 + Math.random() * 50, hue: Math.random() }));
-  let off = 0, last = 0;
-  const rr = (ctx, x, y, w, h, r) => { ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, r) : ctx.rect(x, y, w, h); };
-
-  runWhenVisible(c, t => {
-    const { ctx, w, h } = S, dt = last ? Math.min(50, t - last) : 16; last = t;
-    off += dt * .12;
-    if (t - adT > 3600 && t - manual > 8000) setAd((ad + 1) % ADS.length);
-    const A = ADS[ad], k = Math.min(1, (t - adT) / 450);
-    const sc = Math.min(w / 640, h / 440);
-
-    // night sky
-    const sky = ctx.createLinearGradient(0, 0, 0, h);
-    sky.addColorStop(0, "#160a28"); sky.addColorStop(.7, "#2a1240"); sky.addColorStop(1, "#120818");
-    ctx.fillStyle = sky; ctx.fillRect(0, 0, w, h);
-    // moon
-    ctx.fillStyle = "rgba(246,222,164,.9)"; ctx.shadowColor = "#e8c27a"; ctx.shadowBlur = 30;
-    ctx.beginPath(); ctx.arc(w * .82, h * .17, 16 * sc + 6, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
-    const ground = h * .72;
-    // far skyline
-    far.forEach(b => {
-      let x = ((b.x - off * .25) % (far.length * 60) + far.length * 60) % (far.length * 60) - 60;
-      ctx.fillStyle = "rgba(60,30,90,.7)"; ctx.fillRect(x * sc, ground - b.h * sc - 20 * sc, b.w * sc, b.h * sc + 20 * sc);
-    });
-    // near buildings with lit windows + billboards
-    near.forEach((b, i) => {
-      let x = ((b.x - off * .6) % (near.length * 120) + near.length * 120) % (near.length * 120) - 120;
-      const bx = x * sc, by = ground - b.h * sc, bw = b.w * sc, bh = b.h * sc;
-      ctx.fillStyle = "#1c0d2e"; ctx.fillRect(bx, by, bw, bh);
-      for (let yy = by + 8 * sc; yy < ground - 10 * sc; yy += 14 * sc)
-        for (let xx = bx + 6 * sc; xx < bx + bw - 8 * sc; xx += 12 * sc)
-          if (((xx * 7 + yy * 13 + i) | 0) % 3 === 0) { ctx.fillStyle = "rgba(232,194,122,.55)"; ctx.fillRect(xx, yy, 4 * sc, 5 * sc); }
-    });
-    // streetlights
-    for (let i = 0; i < 6; i++) {
-      const x = (((i * 160 - off * 1.1) % 960 + 960) % 960 - 60) * sc;
-      ctx.strokeStyle = "#3a2350"; ctx.lineWidth = 3 * sc;
-      ctx.beginPath(); ctx.moveTo(x, ground); ctx.lineTo(x, ground - 120 * sc); ctx.lineTo(x + 18 * sc, ground - 120 * sc); ctx.stroke();
-      const lg = ctx.createRadialGradient(x + 18 * sc, ground - 116 * sc, 2, x + 18 * sc, ground - 60 * sc, 90 * sc);
-      lg.addColorStop(0, "rgba(246,222,164,.45)"); lg.addColorStop(1, "rgba(246,222,164,0)");
-      ctx.fillStyle = lg; ctx.fillRect(x - 80 * sc, ground - 120 * sc, 200 * sc, 120 * sc);
-    }
-    // road
-    ctx.fillStyle = "#0d0616"; ctx.fillRect(0, ground, w, h - ground);
-    ctx.fillStyle = "rgba(232,194,122,.7)";
-    for (let i = 0; i < 12; i++) {
-      const x = (((i * 90 - off * 1.4) % 1080 + 1080) % 1080 - 90) * sc;
-      ctx.fillRect(x, h * .95, 46 * sc, 4 * sc);
-    }
-    // cab
-    const cs = Math.min(w / 450, h / 290), cx = w * .5 - 174 * cs, cy = h * .86 - 6 * cs + Math.sin(t / 140) * 1.2 * cs;
-    ctx.save(); ctx.translate(cx, cy); ctx.scale(cs, cs);
-    // shadow
-    ctx.fillStyle = "rgba(0,0,0,.5)"; ctx.beginPath(); ctx.ellipse(170, 26, 180, 12, 0, 0, 7); ctx.fill();
-    // body
-    const body = ctx.createLinearGradient(0, -90, 0, 10);
-    body.addColorStop(0, "#f7f2fb"); body.addColorStop(.6, "#cfc3dc"); body.addColorStop(1, "#8d7fa0");
-    ctx.fillStyle = body;
-    ctx.beginPath();
-    ctx.moveTo(10, 0); ctx.lineTo(4, -38); ctx.quadraticCurveTo(8, -52, 40, -56);
-    ctx.lineTo(92, -60); ctx.quadraticCurveTo(120, -100, 160, -104); ctx.lineTo(236, -104);
-    ctx.quadraticCurveTo(262, -100, 286, -62); ctx.lineTo(320, -56); ctx.quadraticCurveTo(342, -52, 344, -30);
-    ctx.lineTo(340, 0); ctx.closePath(); ctx.fill();
-    // windows
-    ctx.fillStyle = "rgba(40,20,70,.85)";
-    ctx.beginPath(); ctx.moveTo(106, -62); ctx.quadraticCurveTo(128, -94, 162, -96); ctx.lineTo(196, -96); ctx.lineTo(196, -62); ctx.closePath(); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(204, -62); ctx.lineTo(204, -96); ctx.lineTo(234, -96); ctx.quadraticCurveTo(256, -92, 274, -62); ctx.closePath(); ctx.fill();
-    // window reflection
-    ctx.fillStyle = "rgba(255,255,255,.12)"; ctx.beginPath(); ctx.moveTo(150, -94); ctx.lineTo(170, -94); ctx.lineTo(140, -64); ctx.lineTo(122, -64); ctx.fill();
-    // side ad panel (door wrap)
-    const pg = ctx.createLinearGradient(70, -50, 300, -6);
-    pg.addColorStop(0, A.c1); pg.addColorStop(1, A.c2);
-    ctx.globalAlpha = k; ctx.fillStyle = pg; rr(ctx, 70, -52, 236, 40, 8); ctx.fill();
-    ctx.fillStyle = "#fff"; ctx.font = "800 15px Outfit, sans-serif"; ctx.textBaseline = "middle";
-    ctx.fillText(A.icon + "  " + A.t1, 82, -38);
-    ctx.font = "500 10px Outfit, sans-serif"; ctx.fillStyle = "rgba(255,255,255,.9)"; ctx.fillText(A.t2, 82, -21);
-    ctx.globalAlpha = 1;
-    // roof LED board
-    ctx.fillStyle = "#1a0b2a"; rr(ctx, 140, -132, 120, 26, 6); ctx.fill();
-    ctx.fillStyle = "#2c1745"; ctx.fillRect(176, -106, 6, 4); ctx.fillRect(218, -106, 6, 4);
-    ctx.save(); rr(ctx, 143, -129, 114, 20, 4); ctx.clip();
-    ctx.fillStyle = A.c1; ctx.shadowColor = A.c1; ctx.shadowBlur = 10; ctx.font = "700 12px Outfit, sans-serif";
-    const msg = "ANUTEC ✦ " + A.t1 + " ✦ ", mw = ctx.measureText(msg).width;
-    const sx = 143 - ((t * .05) % mw);
-    ctx.fillText(msg + msg + msg, sx, -119); ctx.restore(); ctx.shadowBlur = 0;
-    // lights
-    ctx.fillStyle = "#fff3c4"; ctx.shadowColor = "#fff3c4"; ctx.shadowBlur = 20; rr(ctx, 332, -40, 12, 10, 3); ctx.fill();
-    ctx.fillStyle = "#ff4f7a"; ctx.shadowColor = "#ff4f7a"; rr(ctx, 4, -40, 8, 12, 3); ctx.fill(); ctx.shadowBlur = 0;
-    const beam = ctx.createLinearGradient(344, 0, 520, 0);
-    beam.addColorStop(0, "rgba(255,243,196,.35)"); beam.addColorStop(1, "rgba(255,243,196,0)");
-    ctx.fillStyle = beam; ctx.beginPath(); ctx.moveTo(344, -38); ctx.lineTo(560, -70); ctx.lineTo(560, 20); ctx.closePath(); ctx.fill();
-    // wheels
-    [[80, 0], [272, 0]].forEach(([wx, wy]) => {
-      ctx.fillStyle = "#0b0612"; ctx.beginPath(); ctx.arc(wx, wy, 24, 0, 7); ctx.fill();
-      ctx.fillStyle = "#6e5f82"; ctx.beginPath(); ctx.arc(wx, wy, 13, 0, 7); ctx.fill();
-      ctx.strokeStyle = "#cfc3dc"; ctx.lineWidth = 2;
-      for (let s = 0; s < 5; s++) { const a = s * 1.256 + off * .09; ctx.beginPath(); ctx.moveTo(wx, wy); ctx.lineTo(wx + Math.cos(a) * 12, wy + Math.sin(a) * 12); ctx.stroke(); }
-    });
-    ctx.restore();
-    // speed lines
-    ctx.strokeStyle = "rgba(240,166,201,.25)"; ctx.lineWidth = 1.5;
-    for (let i = 0; i < 5; i++) {
-      const y = cy - (20 + i * 18) * cs, x = ((-off * 3 + i * 137) % (w + 200) + w + 200) % (w + 200) - 100;
-      ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 60, y); ctx.stroke();
-    }
-    // vignette
-    const v = ctx.createRadialGradient(w / 2, h / 2, h * .3, w / 2, h / 2, w * .75);
-    v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, "rgba(0,0,0,.45)");
-    ctx.fillStyle = v; ctx.fillRect(0, 0, w, h);
-  });
 }
 
 /* ---------- NETWORK MAP: Hyderabad nodes, growing fleet ---------- */
@@ -530,13 +331,323 @@ function initTilt() {
   });
 }
 
+
+/* =========================================================
+   v2 — motion engine
+   ========================================================= */
+const hasGSAP = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
+if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
+let lenis = null;
+
+/* ---------- split text into animatable words ---------- */
+function splitWords(root) {
+  if (root._split) return root._split;
+  const walk = node => {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const parts = n.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        const inGrad = n.parentElement.closest(".grad");
+        parts.forEach(p => {
+          if (!p) return;
+          if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
+          const w = document.createElement("span"); w.className = "w";
+          const inner = document.createElement("span"); inner.textContent = p;
+          if (inGrad) inner.className = "grad";
+          w.appendChild(inner); frag.appendChild(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== "BR" && !n.classList.contains("w")) {
+        if (n.classList.contains("grad")) n.classList.add("grad-split");
+        walk(n);
+      }
+    });
+  };
+  walk(root);
+  root._split = [...root.querySelectorAll(".w > span")];
+  return root._split;
+}
+
+/* ---------- size the parallax tiles to the scene height ---------- */
+function sizeScene(sc) {
+  [".far", ".mid"].forEach(sel => {
+    const L = sc.querySelector(sel); if (!L) return;
+    const h = L.getBoundingClientRect().height;
+    L.querySelector("i").style.setProperty("--tw", Math.round(h * 1600 / 520) + "px");
+  });
+}
+
+/* ---------- preloader + page transitions ---------- */
+function initTransitions() {
+  const wipe = $(".wipe"), pre = $(".preloader");
+  if (hasGSAP) gsap.set(wipe, { y: 0, yPercent: 100 });
+  let came = false;
+  try { came = sessionStorage.getItem("anutec-nav") === "1"; sessionStorage.removeItem("anutec-nav"); } catch (e) {}
+  if (pre) {
+    if (came || !hasGSAP || reduceMotion) pre.remove();
+    else {
+      const bar = pre.querySelector(".pl-bar i");
+      gsap.timeline()
+        .to(bar, { width: "100%", duration: 1.1, ease: "power2.inOut" })
+        .to(pre.querySelector(".pl-in"), { y: -30, opacity: 0, duration: .4 })
+        .to(pre, { yPercent: -100, duration: .8, ease: "power4.inOut" }, "-=.1")
+        .add(() => pre.remove());
+    }
+  }
+  if (came && hasGSAP && !reduceMotion) {
+    gsap.set(wipe, { yPercent: 0 });
+    gsap.to(wipe, { yPercent: -100, duration: .8, ease: "power4.inOut", delay: .05 });
+  }
+  if (!hasGSAP || reduceMotion) return;
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a"); if (!a) return;
+    const href = a.getAttribute("href") || "";
+    if (a.target === "_blank" || e.metaKey || e.ctrlKey || e.shiftKey || !/\.html(#.*)?$/.test(href) || /^https?:/.test(href)) return;
+    const [path, hash] = href.split("#");
+    if (location.pathname.endsWith("/" + path) && hash) return;
+    e.preventDefault();
+    try { sessionStorage.setItem("anutec-nav", "1"); } catch (er) {}
+    gsap.fromTo(wipe, { yPercent: 100 }, { yPercent: 0, duration: .6, ease: "power4.inOut", onComplete: () => location.href = href });
+  });
+  addEventListener("pageshow", ev => { if (ev.persisted) gsap.set(wipe, { yPercent: 100 }); });
+}
+
+/* ---------- smooth scroll ---------- */
+function initSmooth() {
+  const bar = $(".progress");
+  const onScroll = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  };
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  if (!hasGSAP || reduceMotion || typeof window.Lenis === "undefined") return;
+  lenis = new Lenis({ lerp: .1, smoothWheel: true });
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    const t = document.querySelector(a.getAttribute("href")); if (!t) return;
+    e.preventDefault(); lenis.scrollTo(t, { offset: -90 });
+  });
+  if (location.hash) setTimeout(() => { const t = document.querySelector(location.hash); if (t) lenis.scrollTo(t, { offset: -90, immediate: true }); }, 300);
+}
+
+/* ---------- HERO slider with driving cab ---------- */
+function initHeroSlider() {
+  const hero = $("#hero"); if (!hero) return;
+  const sceneEl = buildScene($(".scene-host", hero), { mode: reduceMotion ? "still" : "loop", ad: ANUTEC_ADS[0] });
+  sizeScene(sceneEl); addEventListener("resize", () => sizeScene(sceneEl));
+  const slides = $$(".slide", hero), tabs = $$(".slide-tabs button", hero);
+  const cab = $(".cab", sceneEl);
+  const DUR = 6500;
+  let cur = -1, timer = 0, busy = false;
+  slides.forEach(s => splitWords(s.querySelector("h1")));
+  const go = (i, first) => {
+    if (busy || i === cur) return;
+    busy = true;
+    const prev = slides[cur], next = slides[i];
+    tabs.forEach((t, j) => { t.classList.toggle("on", j === i); t.classList.toggle("done", j < i); });
+    // reset bar animation
+    const bar = tabs[i].querySelector(".bar2 i"); bar.style.animation = "none"; bar.offsetWidth; bar.style.animation = "";
+    setSceneTime(sceneEl, next.dataset.time);
+    cab.classList.add("swap");
+    setTimeout(() => { setCabAd(cab, ANUTEC_ADS[+next.dataset.ad]); cab.classList.remove("swap"); }, 380);
+    const enter = () => {
+      next.classList.add("on");
+      if (hasGSAP && !reduceMotion) {
+        const tl = gsap.timeline({ onComplete: () => busy = false });
+        tl.fromTo(next.querySelector("h1")._split, { yPercent: 115, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 1, stagger: .045, ease: "power4.out" })
+          .fromTo([next.querySelector(".eyebrow"), next.querySelector(".lead"), next.querySelector(".hero-cta")], { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: .7, stagger: .08, ease: "power3.out" }, first ? .25 : .3);
+      } else busy = false;
+    };
+    if (prev && hasGSAP && !reduceMotion) {
+      gsap.timeline({ onComplete: () => { prev.classList.remove("on"); enter(); } })
+        .to(prev.querySelector("h1")._split, { yPercent: -115, duration: .45, stagger: .02, ease: "power3.in" })
+        .to([prev.querySelector(".eyebrow"), prev.querySelector(".lead"), prev.querySelector(".hero-cta")], { opacity: 0, y: -14, duration: .3 }, 0);
+    } else { if (prev) prev.classList.remove("on"); enter(); }
+    cur = i;
+    clearTimeout(timer); timer = setTimeout(() => go((cur + 1) % slides.length), DUR);
+  };
+  tabs.forEach((t, i) => t.addEventListener("click", () => go(i)));
+  $("#hPrev").addEventListener("click", () => go((cur - 1 + slides.length) % slides.length));
+  $("#hNext").addEventListener("click", () => go((cur + 1) % slides.length));
+  let x0 = null;
+  hero.addEventListener("touchstart", e => x0 = e.touches[0].clientX, { passive: true });
+  hero.addEventListener("touchend", e => {
+    if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) go(dx < 0 ? (cur + 1) % slides.length : (cur - 1 + slides.length) % slides.length);
+  });
+  document.addEventListener("visibilitychange", () => { if (document.hidden) clearTimeout(timer); else timer = setTimeout(() => go((cur + 1) % slides.length), DUR); });
+  go(0, true);
+  // parallax the hero away on scroll
+  if (hasGSAP && !reduceMotion) {
+    gsap.to($(".slides", hero), { yPercent: -18, opacity: 0, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
+    gsap.to(sceneEl.querySelector(".cab-wrap"), { xPercent: 30, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
+  }
+}
+
+/* ---------- RIDE: scroll-driven journey across Hyderabad ---------- */
+const STOPS = [
+  { t: "08:00", time: "day", place: "HITEC City", h: "Morning commute", p: "Tech professionals waiting at signals read your ad on the way to work." },
+  { t: "12:30", time: "day", place: "Banjara Hills", h: "Hospital row", p: "Families and patients on the road. A good time for healthcare messages." },
+  { t: "16:30", time: "dawn", place: "Ameerpet", h: "Students & shoppers", p: "Coaching centres and markets. Your brand in front of young Hyderabad." },
+  { t: "19:30", time: "dusk", place: "Jubilee Hills", h: "Evening out", p: "Cafés, malls and people with money to spend on a night out." },
+  { t: "22:30", time: "night", place: "Charminar", h: "Late-night food streets", p: "Your roof board lights up the Old City until late." }
+];
+function initRide() {
+  const ride = $("#ride"); if (!ride) return;
+  const sc = buildScene($(".scene-host", ride), { mode: "scroll", ad: ANUTEC_ADS[2] });
+  setSceneTime(sc, "day");
+  const stopsEl = sc.querySelector(".stops"), cards = $("#rideCards"), clock = $("#rideClock"), place = $("#ridePlace"), track = $("#rideTrack");
+  cards.innerHTML = STOPS.map(s => `<div class="ride-card glass"><small>${s.t} · ${s.place}</small><h4>${s.h}</h4><p>${s.p}</p></div>`).join("");
+  const cardEls = $$(".ride-card", cards);
+  const spokes = $$(".spokes", sc), blurs = $$(".blur", sc);
+  const layers = { far: sc.querySelector(".far i"), mid: sc.querySelector(".mid i"), lamps: sc.querySelector(".lamps i"), poles: sc.querySelector(".poles i"), dash: sc.querySelector(".dash i") };
+  let S = 0, tw = {};
+  const layout = () => {
+    sizeScene(sc);
+    S = Math.max(innerWidth * .9, 700);
+    stopsEl.innerHTML = STOPS.map((s, i) => `<div class="stop" style="left:${innerWidth / 2 + i * S}px"><span class="lbl">${s.place}</span><span class="pin2"></span><span class="pole2"></span></div>`).join("");
+    tw = { far: parseFloat(layers.far.style.getPropertyValue("--tw")) || 1600, mid: parseFloat(layers.mid.style.getPropertyValue("--tw")) || 1600, lamps: 520, poles: 1900, dash: 170 };
+  };
+  layout(); addEventListener("resize", layout);
+  let target = 0, p = 0, lastActive = -1;
+  const render = () => {
+    p += (target - p) * .12;
+    const dist = p * (STOPS.length - 1) * S;
+    stopsEl.style.transform = `translateX(${-dist}px)`;
+    const mod = (v, m) => -(((v % m) + m) % m);
+    layers.far.style.transform = `translateX(${mod(dist * .15, tw.far)}px)`;
+    layers.mid.style.transform = `translateX(${mod(dist * .55, tw.mid)}px)`;
+    layers.lamps.style.transform = `translateX(${mod(dist * .9, tw.lamps)}px)`;
+    layers.poles.style.transform = `translateX(${mod(dist * 1.6, tw.poles)}px)`;
+    layers.dash.style.transform = `translateX(${mod(dist, tw.dash)}px)`;
+    const cabW = sc.querySelector(".cab").getBoundingClientRect().width;
+    const deg = dist / (50 / 820 * cabW) * 57.3;
+    spokes.forEach(s => s.style.transform = `rotate(${deg}deg)`);
+    const v = Math.min(1, Math.abs(target - p) * 40);
+    blurs.forEach(b => b.style.opacity = v * .8);
+    const k = p * (STOPS.length - 1), near = Math.round(k), active = Math.abs(k - near) < .32 ? near : -1;
+    if (active !== lastActive) {
+      cardEls.forEach((c, i) => c.classList.toggle("on", i === active));
+      lastActive = active;
+    }
+    const st = STOPS[Math.min(STOPS.length - 1, Math.max(0, near))];
+    if (sc.dataset.time !== st.time) setSceneTime(sc, st.time);
+    clock.textContent = st.t; place.textContent = st.place;
+    track.style.transform = `scaleX(${p})`;
+  };
+  if (hasGSAP && !reduceMotion) {
+    ScrollTrigger.create({
+      trigger: ride, pin: true, start: "top top", end: () => "+=" + innerHeight * (STOPS.length - .5),
+      onUpdate: self => target = self.progress, invalidateOnRefresh: true
+    });
+    gsap.ticker.add(render);
+  } else { target = p = 0; render(); cardEls[0].classList.add("on"); }
+}
+
+/* ---------- formats explorer ---------- */
+function initFormats() {
+  const box = $("#fx"); if (!box) return;
+  const stage = $(".fx-stage", box);
+  stage.insertAdjacentHTML("afterbegin", '<div class="floor"></div>');
+  stage.insertAdjacentHTML("beforeend", cabSVG({ ad: ANUTEC_ADS[0] }));
+  const cab = $(".cab", stage), tabs = $$(".fx-tabs button", box), cap = $(".fx-caption", box);
+  let i = 0, auto = true, ad = 0;
+  const show = n => {
+    i = n;
+    tabs.forEach((t, j) => t.classList.toggle("on", j === n));
+    $$(".zone", cab).forEach(z => z.classList.remove("on"));
+    $$(".zone-" + tabs[n].dataset.zone, cab).forEach(z => z.classList.add("on"));
+    cap.textContent = tabs[n].dataset.cap;
+    ad = (ad + 1) % ANUTEC_ADS.length; setCabAd(cab, ANUTEC_ADS[ad]);
+  };
+  tabs.forEach((t, n) => t.addEventListener("click", () => { auto = false; show(n); }));
+  show(0);
+  setInterval(() => { if (auto && !document.hidden) show((i + 1) % tabs.length); }, 3800);
+}
+
+/* ---------- generic slider (plans) ---------- */
+function initSliders() {
+  $$(".slider").forEach(sl => {
+    const tr = $(".sl-track", sl), items = $$(".sl-item", sl), dots = $(".sl-dots", sl);
+    dots.innerHTML = items.map(() => "<i></i>").join("");
+    const step = () => items[0].getBoundingClientRect().width + 20;
+    $(".sl-prev", sl).addEventListener("click", () => tr.scrollBy({ left: -step() }));
+    $(".sl-next", sl).addEventListener("click", () => tr.scrollBy({ left: step() }));
+    const upd = () => { const k = Math.round(tr.scrollLeft / step()); $$("i", dots).forEach((d, j) => d.classList.toggle("on", j === k)); };
+    tr.addEventListener("scroll", upd, { passive: true }); upd();
+  });
+}
+
+/* ---------- testimonials ---------- */
+function initTestimonials() {
+  const tm = $("#tm"); if (!tm) return;
+  const items = $$(".tm-item", tm), dots = $("#tmDots");
+  dots.innerHTML = items.map(() => "<i></i>").join("");
+  let k = 0;
+  const show = n => { k = n; items.forEach((it, j) => it.classList.toggle("on", j === n)); $$("i", dots).forEach((d, j) => d.classList.toggle("on", j === n)); };
+  $$("i", dots).forEach((d, j) => d.addEventListener("click", () => show(j)));
+  show(0); setInterval(() => !document.hidden && show((k + 1) % items.length), 5200);
+}
+
+/* ---------- scroll animations ---------- */
+function initScrollFX() {
+  if (!hasGSAP || reduceMotion) { $$("[data-split]").forEach(() => {}); return; }
+  $$("[data-split]").forEach(h => {
+    const words = splitWords(h);
+    gsap.fromTo(words, { yPercent: 115, rotate: 3 }, { yPercent: 0, rotate: 0, duration: 1.1, stagger: .035, ease: "power4.out", scrollTrigger: { trigger: h, start: "top 88%" } });
+  });
+  $$("[data-parallax]").forEach(el => {
+    gsap.fromTo(el, { yPercent: +el.dataset.parallax }, { yPercent: -el.dataset.parallax, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
+  });
+  $$("[data-zoom]").forEach(el => {
+    gsap.fromTo(el, { scale: .9, borderRadius: "60px" }, { scale: 1, borderRadius: "36px", ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "top 40%", scrub: true } });
+  });
+  $$(".pline path").forEach(path => {
+    const L = path.getTotalLength();
+    gsap.fromTo(path, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: path.closest(".proc"), start: "top 75%", end: "bottom 60%", scrub: true } });
+  });
+  // marquee reacts to scroll velocity
+  const mq = $(".marquee-track");
+  if (mq) {
+    mq.style.animation = "none";
+    let x = 0, boost = 0;
+    ScrollTrigger.create({ onUpdate: s => boost = Math.min(12, Math.abs(s.getVelocity()) / 300) });
+    gsap.ticker.add(() => {
+      x -= .6 + boost; boost *= .92;
+      const half = mq.scrollWidth / 2; if (-x > half) x += half;
+      mq.style.transform = `translateX(${x}px)`;
+    });
+  }
+  // horizontal industries (desktop)
+  const hs = $(".hscroll");
+  if (hs) {
+    gsap.matchMedia().add("(min-width: 1025px)", () => {
+        const tr = $(".hs-track", hs);
+        const tween = gsap.to(tr, { x: () => -(tr.scrollWidth - innerWidth + 40), ease: "none",
+          scrollTrigger: { trigger: hs, pin: true, start: "top top", end: () => "+=" + (tr.scrollWidth - innerWidth + 40), scrub: 1, invalidateOnRefresh: true } });
+        $$(".hs-card", tr).forEach(c => gsap.fromTo(c, { rotate: 4, y: 40, opacity: .3 }, { rotate: 0, y: 0, opacity: 1, ease: "none", scrollTrigger: { trigger: c, containerAnimation: tween, start: "left 95%", end: "left 55%", scrub: true } }));
+        return () => tween.kill();
+    });
+  }
+  addEventListener("load", () => ScrollTrigger.refresh());
+}
+
 buildLayout();
+initTransitions();
+initSmooth();
 initReveal();
 initSparks();
-initHeroCanvas();
-initShowcase();
+initHeroSlider();
+initRide();
+initFormats();
+initSliders();
+initTestimonials();
 initNetworkMap();
 initGrowth();
 initPlanner();
 initForms();
 initTilt();
+initScrollFX();

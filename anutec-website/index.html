@@ -17,42 +17,55 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="home">
+<div class="preloader" aria-hidden="true"><div class="pl-in"><img src="assets/img/emblem.jpg" alt=""><span class="pl-word">ANUTEC ADVERTISING</span><span class="pl-bar"><i></i></span></div></div>
 
 <main>
-  <!-- HERO -->
-  <section class="hero">
-    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
-    <div class="hero-veil"></div>
-    <div class="wrap hero-grid">
-      <div>
+  <!-- ============ HERO SLIDER ============ -->
+  <section class="hero2" id="hero" aria-label="Featured">
+    <div class="scene-host"></div>
+    <div class="shade"></div>
+    <div class="slides">
+      <article class="slide" data-time="night" data-ad="0">
         <span class="eyebrow"><i></i>Cab advertising · Hyderabad</span>
-        <h1>
-          <span class="line"><span>Your brand,</span></span>
-          <span class="line"><span class="grad">on the move</span></span>
-          <span class="line"><span>across the city.</span></span>
-        </h1>
-        <p class="lead">Anutec turns Hyderabad's cabs into moving billboards. Over 200 driver partners carry your message from HITEC City to Charminar, every day, in front of the people you want to reach.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="contact.html">Start a campaign
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-          <a class="btn btn-glass" href="about.html">Read our story</a>
-        </div>
-        <div class="live glass"><span class="dot"></span><span><b>200+ driver partners</b> on Hyderabad roads every day</span></div>
+        <h1>Your brand, <span class="grad">on the move</span> across the city.</h1>
+        <p class="lead">Over 200 driver partners carry your message from HITEC City to Charminar, every single day.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="contact.html">Start a campaign</a><a class="btn btn-glass" href="#ride">See the ride</a></div>
+      </article>
+      <article class="slide" data-time="dusk" data-ad="1">
+        <span class="eyebrow"><i></i>For hospitals &amp; clinics</span>
+        <h1>Be the name families <span class="grad">remember first.</span></h1>
+        <p class="lead">Your emergency number and specialities, seen around the clock in the neighbourhoods you serve.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="industries.html#hospitals">Healthcare campaigns</a><a class="btn btn-glass" href="contact.html">Talk to us</a></div>
+      </article>
+      <article class="slide" data-time="eve" data-ad="2">
+        <span class="eyebrow"><i></i>For food chains</span>
+        <h1>Show up just as <span class="grad">Hyderabad gets hungry.</span></h1>
+        <p class="lead">Lunch and dinner routes past offices, colleges and the city's late-night food streets.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="industries.html#food">Food campaigns</a><a class="btn btn-glass" href="contact.html">Talk to us</a></div>
+      </article>
+      <article class="slide" data-time="dawn" data-ad="3">
+        <span class="eyebrow"><i></i>For real estate</span>
+        <h1>Drive buyers <span class="grad">to your site visit.</span></h1>
+        <p class="lead">Put your project in front of home buyers in the IT corridor, every day on their commute.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="industries.html#realestate">Real-estate campaigns</a><a class="btn btn-glass" href="contact.html">Talk to us</a></div>
+      </article>
+    </div>
+    <div class="slide-ui">
+      <div class="slide-tabs">
+        <button><em>01 · Brands</em><span class="bar2"><i></i></span></button>
+        <button><em>02 · Hospitals</em><span class="bar2"><i></i></span></button>
+        <button><em>03 · Food chains</em><span class="bar2"><i></i></span></button>
+        <button><em>04 · Real estate</em><span class="bar2"><i></i></span></button>
       </div>
-
-      <div class="reveal d2" style="position:relative">
-        <div class="stage glass" data-tilt>
-          <div class="stage-top"><span class="rec"><i></i>LIVE PREVIEW</span><span>Your ad, on the road</span></div>
-          <div class="screen"><canvas id="cabCanvas" aria-label="Animated cab carrying a rotating advertisement"></canvas></div>
-          <div class="ad-chips" id="adChips"></div>
-        </div>
-        <div class="float-card glass tint-gold fc-1"><span class="muted">Areas covered</span><b class="gold">30+</b></div>
-        <div class="float-card glass tint-pink fc-2"><span class="muted">Hours on road / day</span><b class="grad">12+</b></div>
+      <div class="slide-arrows">
+        <button id="hPrev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg></button>
+        <button id="hNext" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
       </div>
     </div>
+    <div class="scroll-cue">SCROLL</div>
   </section>
 
-  <!-- MARQUEE -->
+  <!-- ============ MARQUEE ============ -->
   <div class="marquee glass" aria-label="Areas we cover">
     <div class="marquee-track">
       <span>HITEC City</span><span>Gachibowli</span><span>Banjara Hills</span><span>Jubilee Hills</span><span>Madhapur</span><span>Kukatpally</span><span>Secunderabad</span><span>Kondapur</span><span>Ameerpet</span><span>Charminar</span><span>Kokapet</span><span>Shamshabad Airport</span>
@@ -60,12 +73,12 @@
     </div>
   </div>
 
-  <!-- STATS -->
+  <!-- ============ STATS ============ -->
   <section>
     <div class="wrap">
-      <div class="reveal" style="margin-bottom:36px">
-        <span class="eyebrow"><i></i>The network in numbers</span>
-        <h2>A city-wide reach that <span class="grad">keeps growing.</span></h2>
+      <div style="margin-bottom:36px">
+        <span class="eyebrow reveal"><i></i>The network in numbers</span>
+        <h2 data-split>A city-wide reach that <span class="grad">keeps growing.</span></h2>
       </div>
       <div class="stats">
         <div class="stat glass tint-violet reveal">
@@ -96,127 +109,222 @@
     </div>
   </section>
 
-  <!-- STORY SPLIT -->
+  <!-- ============ WHY CABS ============ -->
   <section>
     <div class="wrap split">
-      <div class="media glass reveal" data-tilt><img src="assets/img/logo-banner.jpg" alt="Anutec Advertising logo — winged shield emblem in violet and gold" loading="lazy" width="1600" height="893"></div>
-      <div class="reveal d1">
-        <span class="eyebrow"><i></i>Why cabs</span>
-        <h2>People skip ads on a screen. <span class="grad">They can't skip the street.</span></h2>
-        <p class="lead">A billboard waits in one place. A cab goes where people are: tech parks in the morning, hospitals at noon, malls and food streets at night. Your ad follows that route all day.</p>
-        <div class="hero-cta"><a class="btn btn-glass" href="network.html">See the network</a></div>
+      <div class="media glass reveal" style="overflow:hidden"><img data-parallax="6" src="assets/img/logo-banner.jpg" alt="Anutec Advertising logo, a winged shield emblem in violet and gold" loading="lazy" width="1600" height="893" style="transform-origin:center;scale:1.15"></div>
+      <div>
+        <span class="eyebrow reveal"><i></i>Why cabs</span>
+        <h2 data-split>People skip ads on a screen. <span class="grad">They can't skip the street.</span></h2>
+        <p class="lead reveal">A billboard waits in one place. A cab goes where people are: tech parks in the morning, hospitals at noon, malls and food streets at night. Your ad follows that route all day.</p>
+        <div class="hero-cta reveal"><a class="btn btn-glass" href="network.html">See the network</a></div>
       </div>
     </div>
   </section>
 
-  <!-- INDUSTRIES -->
-  <section>
-    <div class="wrap">
-      <div class="center reveal" style="margin-bottom:44px">
-        <span class="eyebrow"><i></i>Who we move</span>
-        <h2>Built for every kind of <span class="grad">Hyderabad business.</span></h2>
-        <p class="lead">From a new biryani outlet to a multi-speciality hospital, we plan routes around the people you want to reach.</p>
+  <!-- ============ RIDE (pinned scroll) ============ -->
+  <section class="ride" id="ride" aria-label="A day on the road">
+    <div class="scene-host"></div>
+    <div class="ride-head">
+      <div>
+        <span class="eyebrow" style="color:#e8c27a"><i></i>Scroll to ride along</span>
+        <h2>One cab. One day. <span class="grad">Thousands of glances.</span></h2>
       </div>
-      <div class="ind-grid">
-        <a href="industries.html#brands" class="card glass tint-violet edge reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.9L22 9.6l-5.5 4.8L18.2 22 12 18.3 5.8 22l1.7-7.6L2 9.6l7.1-.7z"/></svg></div>
-          <h3>Brands &amp; product launches</h3>
-          <p>Launch day across the city, with your name on screens and windows from Kukatpally to LB Nagar.</p>
-          <span class="tag">Launches</span><span class="tag">Retail</span><span class="tag">D2C</span>
-          <span class="big">01</span>
-        </a>
-        <a href="industries.html#hospitals" class="card glass tint-blue edge reveal d1">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></div>
-          <h3>Hospitals &amp; clinics</h3>
-          <p>Emergency numbers, health camps and new departments, shown to the families living near you.</p>
-          <span class="tag">Emergency</span><span class="tag">Health camps</span>
-          <span class="big">02</span>
-        </a>
-        <a href="industries.html#food" class="card glass tint-gold edge reveal">
-          <div class="ico gold-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0zM7 7c0-1.5 1-2 1-3M12 7c0-1.5 1-2 1-3M17 7c0-1.5 1-2 1-3"/></svg></div>
-          <h3>Food chains</h3>
-          <p>Show up at lunch and dinner time on the streets where people order food.</p>
-          <span class="big">03</span>
-        </a>
-        <a href="industries.html#realestate" class="card glass tint-pink edge reveal d1">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11M10 21v-6h4v6"/></svg></div>
-          <h3>Real estate</h3>
-          <p>Bring site visits to Kokapet, Tellapur and Shamshabad from the tech corridors.</p>
-          <span class="big">04</span>
-        </a>
-        <a href="industries.html#orgs" class="card glass tint-violet edge reveal d2">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V8l8-5 8 5v13M9 12h6M9 16h6"/></svg></div>
-          <h3>Organisations &amp; events</h3>
-          <p>Admissions, causes, events and public notices, seen by the whole city.</p>
-          <span class="big">05</span>
-        </a>
+      <div class="clock glass"><b id="rideClock">08:00</b><span id="ridePlace">HITEC City</span></div>
+    </div>
+    <div class="ride-cards" id="rideCards"></div>
+    <div class="ride-track"><i id="rideTrack"></i></div>
+  </section>
+
+  <!-- ============ INDUSTRIES (horizontal) ============ -->
+  <section class="hscroll" aria-label="Industries">
+    <div style="display:flex;align-items:center;min-height:100svh;padding:100px 0 60px">
+      <div class="hs-track">
+        <div class="hs-intro">
+          <span class="eyebrow" style="align-self:flex-start"><i></i>Who we move</span>
+          <h2 data-split>Built for every kind of <span class="grad">Hyderabad business.</span></h2>
+          <p class="lead">We plan routes around the people you want to reach, from a new biryani outlet to a multi-speciality hospital.</p>
+        </div>
+        <a href="industries.html#brands" class="hs-card glass tint-violet edge"><span class="num2">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.9L22 9.6l-5.5 4.8L18.2 22 12 18.3 5.8 22l1.7-7.6L2 9.6l7.1-.7z"/></svg></div><h3>Brands &amp; launches</h3><p>Launch week across the city, with your name on windows and roof boards from Kukatpally to LB Nagar.</p><span class="btn btn-glass">Explore →</span></a>
+        <a href="industries.html#hospitals" class="hs-card glass tint-blue edge"><span class="num2">02</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></div><h3>Hospitals &amp; clinics</h3><p>Emergency numbers, health camps and new departments, shown to the families living near you.</p><span class="btn btn-glass">Explore →</span></a>
+        <a href="industries.html#food" class="hs-card glass tint-gold edge"><span class="num2">03</span><div class="ico gold-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0zM7 7c0-1.5 1-2 1-3M12 7c0-1.5 1-2 1-3M17 7c0-1.5 1-2 1-3"/></svg></div><h3>Food chains</h3><p>Lunch and dinner timing on the streets where people decide what to eat.</p><span class="btn btn-glass">Explore →</span></a>
+        <a href="industries.html#realestate" class="hs-card glass tint-pink edge"><span class="num2">04</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11M10 21v-6h4v6"/></svg></div><h3>Real estate</h3><p>Bring buyers from the tech corridors to site visits in Kokapet, Tellapur and Shamshabad.</p><span class="btn btn-glass">Explore →</span></a>
+        <a href="industries.html#orgs" class="hs-card glass tint-violet edge"><span class="num2">05</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V8l8-5 8 5v13M9 12h6M9 16h6"/></svg></div><h3>Organisations</h3><p>Admissions, causes, events and public notices, seen across the whole city.</p><span class="btn btn-glass">Explore →</span></a>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- ============ PROCESS ============ -->
   <section>
     <div class="wrap">
-      <div class="reveal" style="margin-bottom:40px">
-        <span class="eyebrow"><i></i>How it works</span>
-        <h2>From idea to on the road <span class="grad">in days, not months.</span></h2>
+      <div style="margin-bottom:40px">
+        <span class="eyebrow reveal"><i></i>How it works</span>
+        <h2 data-split>From idea to on the road <span class="grad">in days, not months.</span></h2>
       </div>
-      <div class="steps">
-        <div class="steps-line"></div>
+      <div class="steps proc">
+        <svg class="pline" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path d="M60,10 C250,-10 350,30 500,10 S800,-10 940,10"/></svg>
         <div class="step glass reveal"><div class="n">01</div><h3>Tell us your goal</h3><p>Footfall, calls, a launch or brand recall. We start with what you want to happen.</p></div>
         <div class="step glass reveal d1"><div class="n">02</div><h3>We plan the routes</h3><p>We pick areas, cab count and timing from where your customers live, work and travel.</p></div>
-        <div class="step glass reveal d2"><div class="n">03</div><h3>Design &amp; install</h3><p>Our team designs the creative and installs it on verified cabs, with no hassle for you.</p></div>
+        <div class="step glass reveal d2"><div class="n">03</div><h3>Design &amp; install</h3><p>Our team designs the creative and installs it on verified cabs within 48 hours of approval.</p></div>
         <div class="step glass reveal d3"><div class="n">04</div><h3>Track &amp; grow</h3><p>You get photo proof, route reports and QR scans, so you can see the campaign working.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- FORMATS -->
+  <!-- ============ FORMATS EXPLORER ============ -->
   <section>
     <div class="wrap">
-      <div class="center reveal" style="margin-bottom:40px">
-        <span class="eyebrow"><i></i>Ad formats</span>
-        <h2>Inside, outside, <span class="grad">all around.</span></h2>
+      <div class="center" style="margin-bottom:40px">
+        <span class="eyebrow reveal"><i></i>Ad formats</span>
+        <h2 data-split>Inside, outside, <span class="grad">all around the cab.</span></h2>
+        <p class="lead reveal">Tap a format to see where it goes on the cab.</p>
       </div>
-      <div class="formats">
-        <div class="format glass reveal"><svg viewBox="0 0 120 80"><rect x="10" y="30" width="100" height="30" rx="10" fill="none" stroke="url(#g-brand)" stroke-width="2"/><path d="M30 30l12-16h36l12 16" fill="none" stroke="url(#g-brand)" stroke-width="2"/><rect x="34" y="16" width="52" height="12" rx="3" fill="url(#g-gold)" opacity=".85"/><circle cx="32" cy="62" r="7" fill="url(#g-brand)"/><circle cx="88" cy="62" r="7" fill="url(#g-brand)"/></svg><h4>Rear-window branding</h4><p>Seen by everyone behind the cab</p></div>
-        <div class="format glass reveal d1"><svg viewBox="0 0 120 80"><rect x="10" y="30" width="100" height="30" rx="10" fill="url(#g-brand)" opacity=".85"/><path d="M30 30l12-16h36l12 16" fill="none" stroke="url(#g-brand)" stroke-width="2"/><circle cx="32" cy="62" r="7" fill="url(#g-gold)"/><circle cx="88" cy="62" r="7" fill="url(#g-gold)"/></svg><h4>Door &amp; side wraps</h4><p>Big, bold and readable from the footpath</p></div>
-        <div class="format glass reveal d2"><svg viewBox="0 0 120 80"><rect x="36" y="6" width="48" height="12" rx="3" fill="url(#g-gold)"/><rect x="10" y="34" width="100" height="26" rx="10" fill="none" stroke="url(#g-brand)" stroke-width="2"/><path d="M30 34l12-14h36l12 14" fill="none" stroke="url(#g-brand)" stroke-width="2"/><circle cx="32" cy="62" r="7" fill="url(#g-brand)"/><circle cx="88" cy="62" r="7" fill="url(#g-brand)"/></svg><h4>Roof-top boards</h4><p>Lit up for night-time visibility</p></div>
-        <div class="format glass reveal d3"><svg viewBox="0 0 120 80"><rect x="34" y="8" width="52" height="64" rx="8" fill="none" stroke="url(#g-brand)" stroke-width="2"/><rect x="42" y="16" width="36" height="26" rx="4" fill="url(#g-brand)" opacity=".8"/><rect x="42" y="48" width="36" height="4" rx="2" fill="url(#g-gold)"/><rect x="42" y="56" width="24" height="4" rx="2" fill="url(#g-gold)" opacity=".6"/></svg><h4>Seat-back panels</h4><p>A captive audience, every ride</p></div>
-        <div class="format glass reveal d4"><svg viewBox="0 0 120 80"><rect x="40" y="10" width="40" height="40" rx="4" fill="none" stroke="url(#g-gold)" stroke-width="2"/><rect x="46" y="16" width="10" height="10" fill="url(#g-brand)"/><rect x="64" y="16" width="10" height="10" fill="url(#g-brand)"/><rect x="46" y="34" width="10" height="10" fill="url(#g-brand)"/><rect x="64" y="34" width="6" height="6" fill="url(#g-gold)"/><path d="M30 64h60" stroke="url(#g-brand)" stroke-width="2"/><path d="M40 72h40" stroke="url(#g-gold)" stroke-width="2"/></svg><h4>QR &amp; leaflets</h4><p>Trackable offers in every cab</p></div>
+      <div class="fx" id="fx">
+        <div class="fx-tabs reveal">
+          <button data-zone="door" data-cap="Door wraps: big, bold and readable from the footpath and the next lane."><i>01</i><div><b>Door &amp; side wraps</b><span>Big and bold, readable from the footpath</span></div></button>
+          <button data-zone="roof" data-cap="Roof board: a lit, scrolling message that stands out after dark."><i>02</i><div><b>Roof-top LED boards</b><span>Lit and scrolling, built for night-time</span></div></button>
+          <button data-zone="rear" data-cap="Rear branding: seen by every car stuck behind the cab at a signal."><i>03</i><div><b>Rear branding</b><span>For every car waiting at the signal</span></div></button>
+          <button data-zone="seat" data-cap="Seat-back panels: a captive passenger, every single ride."><i>04</i><div><b>In-cab seat-backs</b><span>A captive audience, every ride</span></div></button>
+          <button data-zone="qr" data-cap="QR codes: trackable offers that turn a glance into a lead."><i>05</i><div><b>QR &amp; offers</b><span>Measure scans, visits and leads</span></div></button>
+        </div>
+        <div class="fx-stage glass reveal d1" data-tilt><p class="fx-caption"></p></div>
       </div>
     </div>
   </section>
 
-  <!-- DRIVER QUOTE -->
+  <!-- ============ PACKAGES ============ -->
   <section>
-    <div class="wrap grid-2">
-      <blockquote class="quote glass tint-violet reveal">
-        "I already drive 12 hours a day. With Anutec, my cab earns a little extra while I work, and I'm proud of what it shows."
-        <footer><span class="avatar">R</span><span><b style="color:var(--ink)">Driver partner</b><br>Kukatpally route</span></footer>
-      </blockquote>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:44px">
+        <span class="eyebrow reveal"><i></i>Packages</span>
+        <h2 data-split>Pick a size. <span class="grad">We'll plan the routes.</span></h2>
+        <p class="lead reveal">Every package can be adjusted. Tell us your budget and we'll suggest the best mix.</p>
+      </div>
+      <div class="pk-grid">
+        <div class="pk glass reveal">
+          <h3>Neighbourhood</h3>
+          <div class="cabs">25 <small>cabs</small></div>
+          <p class="muted">For a single outlet, clinic or local launch.</p>
+          <ul><li>One area cluster of your choice</li><li>Rear-window branding</li><li>4-week run</li><li>Photo proof of installation</li></ul>
+          <a class="btn btn-glass" href="contact.html">Get a quote</a>
+        </div>
+        <div class="pk glass hot reveal d1">
+          <span class="badge">Most popular</span>
+          <h3>City Growth</h3>
+          <div class="cabs">75 <small>cabs</small></div>
+          <p class="muted">For chains, hospitals and real-estate projects.</p>
+          <ul><li>Three area clusters, planned by route</li><li>Door wraps + seat-back panels</li><li>QR tracking for scans and leads</li><li>Weekly route reports</li></ul>
+          <a class="btn btn-primary" href="contact.html">Get a quote</a>
+        </div>
+        <div class="pk glass reveal d2">
+          <h3>City Takeover</h3>
+          <div class="cabs">200+ <small>cabs</small></div>
+          <p class="muted">For launches that should be seen across the whole city.</p>
+          <ul><li>Every zone, inside and around the ORR</li><li>Roof LED boards + full wraps</li><li>Launch-day blitz scheduling</li><li>Dedicated campaign manager</li></ul>
+          <a class="btn btn-gold" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SAMPLE PLANS SLIDER ============ -->
+  <section>
+    <div class="wrap">
+      <div style="margin-bottom:30px">
+        <span class="eyebrow reveal"><i></i>Sample campaign plans</span>
+        <h2 data-split>What a campaign <span class="grad">could look like.</span></h2>
+      </div>
+      <div class="slider reveal">
+        <div class="sl-track">
+          <article class="sl-item glass tint-gold">
+            <div class="meta"><span class="tag">Food chain</span><span class="tag">4 weeks</span><span class="tag">50 cabs</span></div>
+            <h3>New outlet opening, Madhapur</h3>
+            <p class="muted">Door wraps with a QR opening-week offer, running at lunch and dinner within 5 km of the outlet.</p>
+            <div class="kpis"><div><b>50</b><small>Cabs</small></div><div><b>5 km</b><small>Radius focus</small></div><div><b>QR</b><small>Tracked offers</small></div></div>
+          </article>
+          <article class="sl-item glass tint-blue">
+            <div class="meta"><span class="tag">Hospital</span><span class="tag">12 weeks</span><span class="tag">75 cabs</span></div>
+            <h3>24×7 emergency awareness</h3>
+            <p class="muted">Emergency number on rear windows and roof boards, round the clock, across nearby residential colonies.</p>
+            <div class="kpis"><div><b>75</b><small>Cabs</small></div><div><b>24×7</b><small>Visibility</small></div><div><b>3</b><small>Area clusters</small></div></div>
+          </article>
+          <article class="sl-item glass tint-pink">
+            <div class="meta"><span class="tag">Real estate</span><span class="tag">6 weeks</span><span class="tag">100 cabs</span></div>
+            <h3>Weekend site-visit drive</h3>
+            <p class="muted">Full wraps across the Financial District and Kondapur, with lead QR codes linked to the sales team.</p>
+            <div class="kpis"><div><b>100</b><small>Cabs</small></div><div><b>IT belt</b><small>Focus zone</small></div><div><b>Leads</b><small>Via QR</small></div></div>
+          </article>
+          <article class="sl-item glass tint-violet">
+            <div class="meta"><span class="tag">Brand launch</span><span class="tag">2 weeks</span><span class="tag">200+ cabs</span></div>
+            <h3>City-wide launch blitz</h3>
+            <p class="muted">Every cab in the network carries the launch for two weeks, with roof boards lit after dark.</p>
+            <div class="kpis"><div><b>200+</b><small>Cabs</small></div><div><b>All</b><small>Zones</small></div><div><b>Night</b><small>LED boards</small></div></div>
+          </article>
+        </div>
+        <div class="sl-nav">
+          <div class="sl-dots"></div>
+          <div class="slide-arrows" style="display:flex"><button class="sl-prev" aria-label="Previous plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg></button><button class="sl-next" aria-label="Next plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DRIVERS ============ -->
+  <section>
+    <div class="wrap grid-2" style="align-items:stretch">
+      <div class="glass tint-violet reveal" style="padding:40px;border-radius:var(--radius)">
+        <span class="eyebrow"><i></i>Voices from the road</span>
+        <div class="tm" id="tm" style="margin-top:22px">
+          <blockquote class="tm-item quote" style="padding:0">"I already drive 12 hours a day. With Anutec, my cab earns a little extra while I work."<footer><span class="avatar">R</span><span><b style="color:var(--ink)">Driver partner</b><br>Kukatpally</span></footer></blockquote>
+          <blockquote class="tm-item quote" style="padding:0">"Payments come on time. That's why I told six friends from my stand to join."<footer><span class="avatar">S</span><span><b style="color:var(--ink)">Driver partner</b><br>Secunderabad</span></footer></blockquote>
+          <blockquote class="tm-item quote" style="padding:0">"Passengers ask about the ad on the seat. Some scan the QR during the ride."<footer><span class="avatar">M</span><span><b style="color:var(--ink)">Driver partner</b><br>Gachibowli</span></footer></blockquote>
+        </div>
+        <div class="sl-dots" id="tmDots" style="margin-top:20px;cursor:pointer"></div>
+      </div>
       <div class="glass card tint-gold reveal d1" style="display:flex;flex-direction:column;justify-content:center">
         <span class="eyebrow" style="align-self:flex-start"><i></i>Driver first</span>
-        <h3 style="font-size:1.8rem;margin-top:16px">Every campaign also pays a driver.</h3>
-        <p>We work with drivers as partners. They get regular extra income, and you get committed people who look after your ad on the road.</p>
+        <h3 style="font-size:1.9rem;margin-top:16px">Every campaign also pays a driver.</h3>
+        <p>We work with drivers as partners. They earn regular extra income, and you get committed people who look after your ad on the road.</p>
         <div class="hero-cta" style="margin-top:20px"><a class="btn btn-gold" href="network.html#join">Become a driver partner</a></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ============ FAQ ============ -->
   <section>
     <div class="wrap">
-      <div class="cta glass reveal">
+      <div class="center" style="margin-bottom:36px">
+        <span class="eyebrow reveal"><i></i>FAQ</span>
+        <h2 data-split>Questions brands <span class="grad">usually ask.</span></h2>
+      </div>
+      <div class="faq">
+        <details class="glass reveal" open><summary>What's the minimum number of cabs?</summary><div class="ans">Campaigns start at 25 cabs. Most local businesses begin with 25 to 50, and city-wide launches use the full network of 200+.</div></details>
+        <details class="glass reveal"><summary>Can I choose which areas my ad covers?</summary><div class="ans">Yes. We group drivers by the areas they usually drive in, so we can focus your campaign on the neighbourhoods that matter to you, from HITEC City to the Old City.</div></details>
+        <details class="glass reveal"><summary>How do I know my ad is actually running?</summary><div class="ans">You get photo proof of every installation, regular route reports, and QR scan data if your creative includes a code.</div></details>
+        <details class="glass reveal"><summary>Do you design the ads?</summary><div class="ans">Yes. Our team adapts your brand creative for wraps, roof boards and seat-backs, and you approve everything before it's printed.</div></details>
+        <details class="glass reveal"><summary>Is the branding safe for the cars?</summary><div class="ans">We use removable, paint-safe vinyl and fittings. Nothing is permanent and drivers' cars are left as they were after the campaign.</div></details>
+        <details class="glass reveal"><summary>How quickly can a campaign start?</summary><div class="ans">Usually within 48 hours of design approval, depending on the number of cabs and the formats you choose.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section>
+    <div class="wrap">
+      <div class="cta glass" data-zoom>
         <span class="eyebrow"><i></i>Ready when you are</span>
-        <h2>Let's put your brand <span class="grad">on Hyderabad's roads.</span></h2>
-        <p class="lead">Tell us what you're promoting. We'll send a route plan and a quote within 24 hours.</p>
+        <h2 data-split>Let's put your brand <span class="grad">on Hyderabad's roads.</span></h2>
+        <p class="lead" style="margin:0 auto">Tell us what you're promoting. We'll send a route plan and a quote within 24 hours.</p>
         <div class="hero-cta"><a class="btn btn-primary" href="contact.html">Plan my campaign</a><a class="btn btn-glass" data-wa href="#" target="_blank" rel="noopener">WhatsApp us</a></div>
       </div>
     </div>
   </section>
 </main>
 
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/js/cab.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
