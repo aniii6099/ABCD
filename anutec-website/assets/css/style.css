@@ -420,10 +420,6 @@ h3{font-size:1.3rem}
   .quote{padding:28px}
   .drawer{inset:74px 10px auto 10px}
 }
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
-  .reveal{opacity:1;transform:none}
-}
 
 /* =========================================================
    v2 — cinematic scene, slider, scroll storytelling

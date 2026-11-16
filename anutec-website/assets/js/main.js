@@ -13,7 +13,8 @@ const CONFIG = {
   youtube: "#"                     // paste your YouTube URL
 };
 
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Always animate, even when the OS asks for reduced motion.
+const reduceMotion = false;
 const page = document.body.dataset.page || "home";
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
